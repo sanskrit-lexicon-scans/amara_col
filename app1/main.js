@@ -42,7 +42,9 @@ function get_pdfurl_from_index(indexobj) {
  return name of file with the given page
 */
  let vp = indexobj['vp'];
- let pdf = `pdfpages/amara_col-${vp}.pdf`;
+ //let pdf = `pdfpages/amara_col-${vp}.pdf`;
+ // Ref: https://github.com/sanskrit-lexicon/PWG/issues/154#issuecomment-3017003858
+ let pdf = `pdfpages2/amara_col-${vp}.pdf`;
  return pdf;
 }
 
