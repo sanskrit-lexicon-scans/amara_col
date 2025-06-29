@@ -16,7 +16,7 @@ PDF title:  Dictionary of the Sanskrit Language by AmaraSinha
 
 https://sanskrit-lexicon-scans.github.io/amara_col/app1/?N,N,N,N
 
-Example: https://sanskrit-lexicon-scans.github.io/amara_col/?app1/1,2,3,4
+Example: https://sanskrit-lexicon-scans.github.io/amara_col/app1/?1,2,3,4
 
 Access is also available with 3 parameters (book, chapter, verse), in
 accord with the references in Böhtlingk and Roth Grosses Petersburger Wörterbuch
