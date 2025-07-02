@@ -18,21 +18,33 @@ function makelink(indexobj,txt) {
  html = `<a class="nppage" href="${newhref}"><span class="nppage">${txt}</span></a>`;
  return html;
 }
-function display_ipage_id(indexes) {
+function get_alt_link(alt_verse) {
+ let link = '';
+ if (alt_verse == null) {
+  return link;
+ }
+ //console.log('get_alt_link',alt_verse);
+ let p = alt_verse.join(',');
+ let href = `https://sanskrit-lexicon-scans.github.io/amara_dlc/app1/?${p}`;
+ link = `<span class="nppage">(Deslongchamps <a href="${href}"> ${alt_verse}</a>)</span>`;
+ return link;
+}
+
+function display_ipage_id(indexes,alt_verse) {
  //console.log('display_ipage_id: indexes=',indexes);
  [indexprev,indexcur,indexnext] = indexes;
  let prevlink = makelink(indexprev,'<');
  if (prevlink == null) {
-  prevlink = ''
+  prevlink = '';
  }
  let nextlink = makelink(indexnext,'>');
  if (nextlink == null) {
-  nextlink = ''
+  nextlink = '';
  }
 
  let ipage = indexcur['ipage']; // an int
-
- let html = `<p>${prevlink} <span class="nppage">Page ${ipage}</span> ${nextlink}</p>`;
+ let alt_link = get_alt_link(alt_verse);
+ let html = `<p>${prevlink} <span class="nppage">Page ${ipage}</span> ${nextlink} ${alt_link}</p>`;
  let elt = document.getElementById('ipageid');
  elt.innerHTML = html;
 }
@@ -65,14 +77,14 @@ function get_ipage_html(indexcur) {
  return imageElt;
 }
 
-function display_ipage_html(indexes) {
+function display_ipage_html(indexes,alt_verse) {
  let defaultval,elt, html;
  defaultval = null;
  elt=document.getElementById('ipage');
  if (indexes == defaultval) {
   html = '<b>Page not found</b>';
  } else {
-  display_ipage_id(indexes);
+  display_ipage_id(indexes,alt_verse);
   html = get_ipage_html(indexes[1]);
   if (html == null) {
    html = '';
@@ -187,18 +199,45 @@ function get_verse_from_url() {
  return iverse;
 }
 
+function arraysEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  return arr1.every((value, index) => value === arr2[index]);
+}
+function get_alt_verse(verse) {
+ // uses dlc_col mapping from dlc_col.js
+ let alt_verse = verse; 
+ for (let i=0; i < dlc_col.length; i++ ) {
+  let obj = dlc_col[i];
+  let dlc = obj[0];
+  let col = obj[1];
+  // we are in 'col' display.
+  if (arraysEqual(col,verse)) {
+   alt_verse = dlc;
+   break;
+  }
+ }
+ return alt_verse;
+}
+
 function display_ipage_url() {
  let url_verse = get_verse_from_url();
  //console.log('url_verse=',url_verse);
  let defaultval = null;
  let indexobjs;
+ let alt_verse;
  if (url_verse == defaultval) {
   indexobjs = defaultval;
+  alt_verse = defaultval;
  }else {
   indexobjs = get_indexobjs_from_verse(url_verse);
+  if (indexobjs == defaultval) {
+   alt_verse = defaultval;
+  } else {
+   alt_verse = get_alt_verse(url_verse);
+  }
  }
  //console.log('indexobjs=',indexobjs);
- display_ipage_html(indexobjs);
+ display_ipage_html(indexobjs,alt_verse);
 }
 
 document.getElementsByTagName("BODY")[0].onload = display_ipage_url;
