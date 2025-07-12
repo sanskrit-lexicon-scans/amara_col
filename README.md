@@ -1,5 +1,5 @@
 
-# Colebrooke 1808 edition of Amarakosha
+## Colebrooke 1808 edition of Amarakosha
 
 Ref: https://github.com/sanskrit-lexicon/PWG/issues/154
 
