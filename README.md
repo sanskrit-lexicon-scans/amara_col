@@ -3,7 +3,7 @@
 
 Ref: https://github.com/sanskrit-lexicon/PWG/issues/154
 
-PDF source: : Google Books
+PDF source: https://catalog.hathitrust.org/Record/101710137
       
 
 PDF title:  Dictionary of the Sanskrit Language by AmaraSinha
