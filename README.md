@@ -11,12 +11,15 @@ PDF title:  Dictionary of the Sanskrit Language by AmaraSinha
  by H. T. Colebrooke,
  printed at Serampoor, 1808
 
-## app1
-    app1 provides access to pages based on (book, chapter, section, verse)
 
-https://sanskrit-lexicon-scans.github.io/amara_col/app1/?N,N,N,N
+## app1
+Provides access to pages based on (book 1-3, chapter, section, verse)
 
 Example: https://sanskrit-lexicon-scans.github.io/amara_col/app1/?1,2,3,4
 
-Access is also available with 3 parameters (book, chapter, verse), in
-accord with the references in Böhtlingk and Roth Grosses Petersburger Wörterbuch
+[bcs.txt](https://github.com/sanskrit-lexicon-scans/amara_col/blob/main/app1/pywork/bcs.txt) shows all the possibilities.
+
+Note that 13 lines have 0 for section number. For these, app1 accepts either 4 numbers or 3 numbers (book, chapter, verse). 
+- https://sanskrit-lexicon-scans.github.io/amara_col/app1/?2,5,0,1
+- https://sanskrit-lexicon-scans.github.io/amara_col/app1/?2,5,1
+
